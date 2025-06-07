@@ -1,3 +1,5 @@
+import numpy as np
+
 class BuscaLocal:
     """
     Implementação da Busca Aleatória Local (LRS).

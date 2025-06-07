@@ -1,3 +1,5 @@
+import numpy as np
+
 class HillClimbing:
     """
     Implementação do algoritmo de Subida de Encosta (Hill Climbing).

@@ -1,3 +1,5 @@
+import numpy as np
+
 class BuscaGlobal:
     """
     Implementação da Busca Aleatória Global (GRS).
