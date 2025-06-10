@@ -85,8 +85,8 @@ funcoes = {
 # execução dos testes (100 rodadas por função)
 # =====================================================
 resultados = {}
-epsilon = 0.1  # Valor inicial para HillClimbing
-sigma = 0.5  # Valor inicial para BuscaLocal
+epsilon = 0.1  # valor inicial p/ HillClimbing
+sigma = 0.5  # valor inicial p/ BuscaLocal
 
 for numero, (f, limites, maximizar) in funcoes.items():
     print(f"\nProcessando função: {numero}")

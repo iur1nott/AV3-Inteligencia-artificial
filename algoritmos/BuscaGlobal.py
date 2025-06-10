@@ -2,11 +2,7 @@ import numpy as np
 
 class BuscaGlobal:
     """
-    Implementação da Busca Aleatória Global (GRS).
-    Base teórica (páginas 43-44 do material):
-      - Algoritmo que explora uniformemente todo o espaço de busca
-      - Não possui viés local, ideal para problemas multimodais
-      - Mais eficiente em espaços de alta dimensão
+    implementação da Busca Aleatória Global (GRS).
     """
 
     def __init__(self, funcao, limites, maximizar, max_iter=1000, paciencia=100):
@@ -18,7 +14,7 @@ class BuscaGlobal:
 
     def executar(self):
         dim = len(self.limites)
-        # Solução inicial aleatória
+        # solução inicial aleatória
         x_melhor = np.array([np.random.uniform(lim[0], lim[1]) for lim in self.limites])
         f_melhor = self.funcao(*x_melhor)
         historico = [x_melhor.copy()]
@@ -27,11 +23,11 @@ class BuscaGlobal:
         iteracao = 0
 
         while iteracao < self.max_iter and sem_melhoria < self.paciencia:
-            # Gera candidato uniforme em todo o domínio
+            # gera candidato uniforme em todo o domínio
             candidato = np.array([np.random.uniform(lim[0], lim[1]) for lim in self.limites])
             f_candidato = self.funcao(*candidato)
 
-            # Atualiza solução se houver melhoria
+            # atualiza solução se houver melhoria
             if self.maximizar:
                 if f_candidato > f_melhor:
                     x_melhor = candidato.copy()

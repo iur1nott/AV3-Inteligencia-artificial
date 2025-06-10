@@ -2,25 +2,21 @@ import numpy as np
 
 class HillClimbing:
     """
-    Implementação do algoritmo de Subida de Encosta (Hill Climbing).
-    Base teórica (páginas 24-25 do material):
-      - Algoritmo de busca local que parte de um ponto inicial (limite inferior do domínio)
-      - Explora vizinhança definida por |x - y| ≤ ε
-      - Ideal para problemas unimodais/convexos
+    implementação do algoritmo de Subida de Encosta (Hill Climbing)
     """
 
     def __init__(self, funcao, limites, maximizar, epsilon=0.1, max_iter=1000, paciencia=100, max_vizinhos=100):
         self.funcao = funcao
         self.limites = limites  # [[min_x1, max_x1], [min_x2, max_x2]]
         self.maximizar = maximizar  # True para maximização, False para minimização
-        self.epsilon = epsilon  # Raio da vizinhança
+        self.epsilon = epsilon  # raio da vizinhança
         self.max_iter = max_iter
         self.paciencia = paciencia  # n de iterações sem melhoria antes de parar
-        self.max_vizinhos = max_vizinhos  # Vizinhos testados por iteração
+        self.max_vizinhos = max_vizinhos  # vizinhos testados por iteração
 
     def executar(self):
         dim = len(self.limites)
-        # Inicializa no limite inferior do domínio (conforme especificação)
+        # inicializa no limite inferior do domínio (conforme especificação)
         x_melhor = np.array([lim[0] for lim in self.limites])
         f_melhor = self.funcao(*x_melhor)
         historico = [x_melhor.copy()]
@@ -31,9 +27,9 @@ class HillClimbing:
         while iteracao < self.max_iter and sem_melhoria < self.paciencia:
             melhorou = False
 
-            # Testa até max_vizinhos candidatos na vizinhança
+            # testa até max_vizinhos candidatos na vizinhança
             for _ in range(self.max_vizinhos):
-                # Gera candidato na vizinhança de x_melhor
+                # gera candidato na vizinhança de x_melhor
                 candidato = np.zeros(dim)
                 for i in range(dim):
                     inf = max(self.limites[i][0], x_melhor[i] - self.epsilon)
@@ -42,7 +38,7 @@ class HillClimbing:
 
                 f_candidato = self.funcao(*candidato)
 
-                # Verifica se há melhoria
+                # verifica se há melhoria
                 if self.maximizar:
                     if f_candidato > f_melhor:
                         x_melhor = candidato.copy()
@@ -56,7 +52,7 @@ class HillClimbing:
                         melhorou = True
                         break
 
-            # Atualiza critério de parada
+            # atualiza critério de parada
             if melhorou:
                 sem_melhoria = 0
             else:
